@@ -2,7 +2,7 @@ apiVersion: skaffold/v2beta11
 kind: Config
 build:
   artifacts:
-  - image: node-accelerator
+  - image: node-express
     buildpacks:
       builder: paketobuildpacks/builder:full
 deploy:
@@ -12,7 +12,7 @@ deploy:
     - kubernetes/deployment.yml
 portForward:
   - resourceType: service
-    resourceName: node-accelerator
+    resourceName: node-express
     port: 80
     localPort: 3000
 profiles:

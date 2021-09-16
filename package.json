@@ -1,5 +1,5 @@
 {
-  "name": "node-accelerator-name",
+  "name": "node-express",
   "version": "1.0.0",
   "description": "accelerator-description",
   "main": "server.js",

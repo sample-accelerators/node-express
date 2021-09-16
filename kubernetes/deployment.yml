@@ -2,23 +2,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app.kubernetes.io/name: node-accelerator
-  name: node-accelerator
+    app.kubernetes.io/name: node-express
+  name: node-express
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: node-accelerator
+      app.kubernetes.io/name: node-express
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: node-accelerator
-        app.kubernetes.io/part-of: node-accelerator
+        app.kubernetes.io/name: node-express
+        app.kubernetes.io/part-of: node-express
     spec:
       containers:
-      - image: node-accelerator:latest
+      - image: node-express:latest
         imagePullPolicy: IfNotPresent
-        name: node-accelerator
+        name: node-express
         ports:
         - containerPort: 3000
         livenessProbe:

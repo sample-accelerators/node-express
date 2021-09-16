@@ -1,5 +1,5 @@
 accelerator:
-  displayName: Node.js accelerator
+  displayName: Node Express
   description: A Node.js sample app using Express
   iconUrl: https://seeklogo.com/images/N/nodejs-logo-FBE122E377-seeklogo.com.png
   tags:
@@ -27,7 +27,7 @@ engine:
       transformations:
       - type: ReplaceText
         substitutions:
-        - text: node-accelerator-name
+        - text: node-express
           with: "#artifactId"
         - text: accelerator-description
           with: "#projectDescription"
@@ -36,14 +36,14 @@ engine:
       transformations:
       - type: ReplaceText
         substitutions:
-        - text: node-accelerator
+        - text: node-express
           with: "#artifactId"
     - includes: [ "kubernetes/skaffold.yml" ]
       condition: "#includeK8s"
       transformations:
       - type: ReplaceText
         substitutions:
-        - text: node-accelerator
+        - text: node-express
           with: "#artifactId"
       - type: RewritePath
         rewriteTo: "#filename"
@@ -55,14 +55,14 @@ engine:
         transformations:
         - type: ReplaceText
           substitutions:
-          - text: node-accelerator
+          - text: node-express
             with: "#artifactId"
       - includes: ["k8s.md"]
         condition: "#includeK8s"
         transformations:
         - type: ReplaceText
           substitutions:
-          - text: node-accelerator
+          - text: node-express
             with: "#artifactId"
         - type: RewritePath
           rewriteTo: "'README.md'"
