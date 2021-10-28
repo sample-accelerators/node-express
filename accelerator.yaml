@@ -20,27 +20,27 @@ accelerator:
     required: true
 
 engine:
-  sources:
-    - includes: [ "**" ]
-      excludes: [ "kubernetes/**", "README.md", "k8s.md", "skaffold.md" ]
-    - includes: [ "package.json" ]
-      transformations:
+  merge:
+    - include: [ "**" ]
+      exclude: [ "kubernetes/**", "README.md", "k8s.md", "skaffold.md" ]
+    - include: [ "package.json" ]
+      chain:
       - type: ReplaceText
         substitutions:
         - text: node-express
           with: "#artifactId"
         - text: accelerator-description
           with: "#projectDescription"
-    - includes: [ "kubernetes/deployment.yml", "kubernetes/service.yml" ]
+    - include: [ "kubernetes/deployment.yml", "kubernetes/service.yml" ]
       condition: "#includeK8s"
-      transformations:
+      chain:
       - type: ReplaceText
         substitutions:
         - text: node-express
           with: "#artifactId"
-    - includes: [ "kubernetes/skaffold.yml" ]
+    - include: [ "kubernetes/skaffold.yml" ]
       condition: "#includeK8s"
-      transformations:
+      chain:
       - type: ReplaceText
         substitutions:
         - text: node-express
@@ -50,16 +50,16 @@ engine:
     - name: README
       type: Combo
       onConflict: Append
-      sources:
+      merge:
       - include: [ "README.md"]
-        transformations:
+        chain:
         - type: ReplaceText
           substitutions:
           - text: node-express
             with: "#artifactId"
-      - includes: ["k8s.md"]
+      - include: ["k8s.md"]
         condition: "#includeK8s"
-        transformations:
+        chain:
         - type: ReplaceText
           substitutions:
           - text: node-express
