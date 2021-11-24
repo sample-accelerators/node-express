@@ -14,7 +14,7 @@ accelerator:
     defaultValue: ''
   - name: includeK8s
     label: "Include kubernetes resources?"
-    inputType: toggle
+    inputType: checkbox
     dataType: boolean
     defaultValue: true
     required: true
