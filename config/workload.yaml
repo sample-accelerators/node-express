@@ -1,8 +1,6 @@
----
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
-  creationTimestamp: null
   name: node-express
   namespace: default
   labels:
@@ -13,4 +11,4 @@ spec:
     git:
       ref:
         branch: main
-      url: https://github.com/sample-accelerators/node-express
+      url: https://github.com/sample-accelerators/node-express.git
