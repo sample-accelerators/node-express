@@ -8,45 +8,43 @@ accelerator:
 
   # options for the UI
   options:
-  - name: projectDescription
-    label: Description
-    display: true
-    defaultValue: ''
-  - name: includeK8s
-    label: "Include kubernetes resources?"
+  - name: includeTap
+    label: "Include TAP deployment resources?"
     inputType: checkbox
     dataType: boolean
     defaultValue: true
-    required: true
 
 engine:
   merge:
     - include: [ "**" ]
-      exclude: [ "kubernetes/**", "README.md", "k8s.md", "skaffold.md" ]
+      exclude: [ "package.json", "config/**", "catalog/**", "README.md", "DEPLOYING.md", "TILTFILE" ]
     - include: [ "package.json" ]
       chain:
       - type: ReplaceText
         substitutions:
         - text: node-express
           with: "#artifactId"
-        - text: accelerator-description
-          with: "#projectDescription"
-    - include: [ "kubernetes/deployment.yml", "kubernetes/service.yml" ]
-      condition: "#includeK8s"
+    - include: [ "config/workload.yaml" ]
+      condition: "#includeTap"
       chain:
       - type: ReplaceText
         substitutions:
         - text: node-express
           with: "#artifactId"
-    - include: [ "kubernetes/skaffold.yml" ]
-      condition: "#includeK8s"
+    - include: [ "catalog/catalog-info.yaml" ]
+      condition: "#includeTap"
       chain:
       - type: ReplaceText
         substitutions:
         - text: node-express
           with: "#artifactId"
-      - type: RewritePath
-        rewriteTo: "#filename"
+    - include: [ "Tiltfile" ]
+      condition: "#includeTap"
+      chain:
+      - type: ReplaceText
+        substitutions:
+        - text: node-express
+          with: "#artifactId"
     - name: README
       type: Combo
       onConflict: Append
@@ -57,8 +55,8 @@ engine:
           substitutions:
           - text: node-express
             with: "#artifactId"
-      - include: ["k8s.md"]
-        condition: "#includeK8s"
+      - include: [ "DEPLOYING.md" ]
+        condition: "#includeTap"
         chain:
         - type: ReplaceText
           substitutions:
