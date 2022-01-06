@@ -5,6 +5,7 @@ accelerator:
   tags:
   - node
   - express
+  - tanzu
 
   # options for the UI
   options:
