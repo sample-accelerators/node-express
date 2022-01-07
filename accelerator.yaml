@@ -18,7 +18,7 @@ accelerator:
 engine:
   merge:
     - include: [ "**" ]
-      exclude: [ "package.json", "config/**", "catalog/**", "README.md", "DEPLOYING.md", "TILTFILE" ]
+      exclude: [ "package.json", "config/**", "catalog/**", "README.md", "DEPLOYING.md" ]
     - include: [ "package.json" ]
       chain:
       - type: ReplaceText
@@ -33,13 +33,6 @@ engine:
         - text: node-express
           with: "#artifactId"
     - include: [ "catalog/catalog-info.yaml" ]
-      condition: "#includeTap"
-      chain:
-      - type: ReplaceText
-        substitutions:
-        - text: node-express
-          with: "#artifactId"
-    - include: [ "Tiltfile" ]
       condition: "#includeTap"
       chain:
       - type: ReplaceText
