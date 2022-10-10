@@ -1,5 +1,8 @@
 # node-express
 
+> **NOTE** This repo has been archived and the sample has moved to:  
+> https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/node-express
+
 This is a starter ExpressJs project, you can run it as a standalone
 app using `npm run server` in the root of the project.
 The server will be listening to request on port `3000`,
